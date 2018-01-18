@@ -20,13 +20,22 @@ class Button(Resource):
 		data = request.get_json()
 		name = data.get('name')
 		power = data.get('power')
-		intensity = data.get('intensity')
-		rd_id = data.get('relay_id')
-		if rd_id is None:
+		
+		if button.button_type == 'relay':
+			rd_id = data.get('relay_id')
+			if power is None or rd_id is None:
+				return make_response(jsonify({'msg': 'Some field missing'}), 401)
+		else:
 			rd_id = data.get('dimmer_id')
+			intensity = data.get('intensity')
+			if power is None or rd_id is None or intensity is None:
+				return make_response(jsonify({'msg': 'Some field missing'}), 401)
+
+
 		button.name = name if name else button.name
 		button.power = power
-		button.intensity = intensity if intensity else button.intensity
+		if button.button_type == 'dimmer':
+			button.intensity = intensity
 		db.session.add(button)
 		db.session.commit()
 		if button.button_type == 'relay':
@@ -62,17 +71,31 @@ class ButtonList(Resource):
 	def post(self):
 		data = request.get_json()
 		name = data.get('name')
+
 		button_type = data.get('button_type')
 		room_id = data.get('room_id')
-		power = data.get('power')
-		intensity = data.get('intensity')
 		ip_address = data.get('ip_address')
-		rd_id = data.get('relay_id')
-		if rd_id is None:
+
+		if button_type == 'relay':
+			rd_id = data.get('relay_id')
+			power = data.get('power')
+			if name is None or button_type is None or room_id is None or ip_address is None or rd_id is None or power is None:
+				return make_response(jsonify({'msg': 'some fields are messing'}), 401)
+		elif button_type == 'dimmer':
 			rd_id = data.get('dimmer_id')
-		button = Buttons.query.filter_by(name=name, button_type=button_type, room_id=room_id).first()
+			power = data.get('power')
+			intensity = data.get('intensity')
+			if name is None or button_type is None or room_id is None or ip_address is None or rd_id is None or power is None or intensity is None:
+				return make_response(jsonify({'msg': 'some fields are missing'}), 401)
+		else:
+			return make_response(jsonify({'msg': 'button_type is not as specified'}), 401)
+
+
+		button = Buttons.query.filter_by(rd_id=rd_id, button_type=button_type, room_id=room_id).first()
 		if button is not None:
-			return make_response(jsonify({'msg': 'Button already exists'}), 404)
+			return make_response(jsonify({'msg': 'Button already exists'}), 401)
+
+
 		if button_type == 'relay':
 			button = Buttons(name=name, button_type=button_type, room_id=room_id, power=power, rd_id=rd_id, ip_address=ip_address)
 			db.session.add(button)
@@ -82,3 +105,7 @@ class ButtonList(Resource):
 		db.session.add(button)
 		db.session.commit()
 		return make_response(jsonify({'msg': 'Button added'}), 201)	
+
+
+
+
