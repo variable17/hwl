@@ -19,7 +19,7 @@ class Rooms(db.Model):
 	buttons = db.relationship('Buttons', backref='room', cascade='all, delete-orphan', lazy=True)
 
 	def json(self):
-		return {'id': self.id, 'name': self.name, 'hub_name': self.hub.name}
+		return {'id': self.id, 'name': self.name}
 
 
 class Cennets(db.Model):
