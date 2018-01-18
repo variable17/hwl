@@ -11,15 +11,17 @@ from resources.room import Room, RoomList
 from resources.button import Button, ButtonList
 from resources.hub import Hub, HubList
 
-
-base_dir = os.path.abspath(os.path.dirname(__file__))
-
 app = Flask(__name__)
 
+base_dir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(base_dir, 'data.db')
-
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'fgnoignvoghorihgnonvznn874fiv98u'
+
+from db import db
+db.init_app(app)
+
+
 api = Api(app)
 
 api.add_resource(Room, '/rooms/<int:id>')
@@ -33,6 +35,4 @@ api.add_resource(HubList, '/hubs')
 
 
 if __name__ == '__main__':
-	from db import db
-	db.init_app(app)
 	app.run(debug=True)
