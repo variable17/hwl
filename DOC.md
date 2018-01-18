@@ -25,16 +25,16 @@ ___
 * Output Json value - 
     ```
     {
-    "hub_id": 1,
-    "hub_name": "office",
-    "rooms": [
+        "hub_id": 2, 
+        "hub_name": "Home", 
+        "rooms": [
         {
-            "hub_name": "office",
-            "id": 2,
-            "name": "Confrence Room"
+        "id": 1, 
+        "name": "Dinning room"
         }
-    ]
+        ]
     }
+
     ```
 
 #### 3. Add a hub
