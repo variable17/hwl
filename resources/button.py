@@ -78,13 +78,16 @@ class ButtonList(Resource):
 
 		if button_type == 'relay':
 			rd_id = data.get('relay_id')
-			power = data.get('power')
+			# power = data.get('power')
+			power = False
 			if name is None or button_type is None or room_id is None or ip_address is None or rd_id is None or power is None:
 				return make_response(jsonify({'msg': 'some fields are messing'}), 401)
 		elif button_type == 'dimmer':
 			rd_id = data.get('dimmer_id')
-			power = data.get('power')
-			intensity = data.get('intensity')
+			# power = data.get('power')
+			power = False
+			# intensity = data.get('intensity')
+			intensity = 0
 			if name is None or button_type is None or room_id is None or ip_address is None or rd_id is None or power is None or intensity is None:
 				return make_response(jsonify({'msg': 'some fields are missing'}), 401)
 		else:

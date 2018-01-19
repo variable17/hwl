@@ -334,13 +334,12 @@ ___
 * url - http://127.0.0.1:5000/buttons
 * Input Json value - 
     ```
-    {
-	"name": "Tubelight",
-	"button_type":"relay",
-	"room_id": 1,
-	"power": false,
-	"relay_id": 2,
-	"ip_address": "192.168.1.4"
+        {
+      "name": "Heater",
+      "button_type":"dimmer",
+      "room_id": 3,
+      "ip_address": "192.168.1.4",
+      "dimmer_id": 4
     }
     ```
     
