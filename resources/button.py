@@ -94,7 +94,7 @@ class ButtonList(Resource):
 			return make_response(jsonify({'msg': 'button_type is not as specified'}), 401)
 
 
-		button = Buttons.query.filter_by(rd_id=rd_id, button_type=button_type, room_id=room_id).first()
+		button = Buttons.query.filter_by(rd_id=rd_id, button_type=button_type).first()
 		if button is not None:
 			return make_response(jsonify({'msg': 'Button already exists'}), 401)
 
