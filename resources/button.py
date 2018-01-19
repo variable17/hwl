@@ -56,7 +56,7 @@ class Button(Resource):
 	def delete(self, id):
 		button = Buttons.query.filter_by(id=id).first()
 		if button is None:
-			return make_response(jsonify({'msg': 'Button does not exists'}), 404)
+			return make_response(jsonify({'msg': 'Button does not exists'}), 401)
 		db.session.delete(button)
 		db.session.commit()
 		return make_response(jsonify({'msg': 'Button deleted'}), 200)
