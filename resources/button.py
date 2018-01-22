@@ -74,6 +74,8 @@ class ButtonList(Resource):
 
 		button_type = data.get('button_type')
 		room_id = data.get('room_id')
+
+		# daedadada
 		ip_address = data.get('ip_address')
 
 		if button_type == 'relay':

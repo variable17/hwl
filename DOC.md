@@ -43,7 +43,7 @@ ___
 * Input Json value -
     ```
     {
-	    "name": "Office"
+        "name": "Office"
     }
     ```
  
@@ -139,12 +139,12 @@ ___
 * Input Json value - 
     ```
    {
-	"udid": "ADA",
-	"name": "def",
-	"cennet_type": "SIDE",
-	"relays" : [{"power":false, "number":1},{"power":false, "number":2}],
-	"dimmers": [{"power":false, "intensity":0, "number":1},{"power":false, "intensity":0, "number":2}],
-	"ip_address": "192.168.1.4"
+    "udid": "ADA",
+    "name": "def",
+    "cennet_type": "SIDE",
+    "relays" : [{"power":false, "number":1},{"power":false, "number":2}],
+    "dimmers": [{"power":false, "intensity":0, "number":1},{"power":false, "intensity":0, "number":2}],
+    "ip_address": "192.168.1.4"
     }
     ```
     
@@ -240,7 +240,7 @@ ___
 * Input Json value - 
     ```
     {
-	"name": "Dinning room"
+    "name": "Dinning room"
     }
     ```
 #### 4. Changing the room name
@@ -249,7 +249,7 @@ ___
 * Input Json value - 
     ```
     {
-    	"name": "Living Room"
+        "name": "Living Room"
     }
     ```
      
@@ -349,11 +349,12 @@ ___
 * Input Json value - 
     ```
     {
-	"power": false,
-	"intensity": 0,
-	"dimmer_id": 2
+    "power": false,
+    "intensity": 0,
+    "dimmer_id": 2
     }
     ```
+
 #### 5. Delete a button
 * Method - DELETE
 * url - http://127.0.0.1:5000/buttons/1
@@ -362,8 +363,61 @@ ___
     msg: operation succedded or not
     ```
     
+___
 
+## 4. Register
+
+#### 1. Registering a user
+* Method - POST
+* url - {{url}}/register
+* Input Json value - 
+    ```
+    {
+        "email": "email@email.com",
+        "name": "user1",
+        "password": "12345"
+    }
+    ```
     
+#### 2. Login a user
+* Method - POST
+* url - {{url}}/login
+* Input Json Value - 
+    ```
+    {
+        "email": "email@email.com",
+        "password": "12345"
+    }
+    ```
+* Output Json Value - 
+```
+    {
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTY2MjQxODIsIm5iZiI6MTUxNjYyNDE4MiwianRpIjoiZjUyZWRhZjUtMjc3Yi00MDMwLTk1MjktMjg3MDU0MmRiYjU1IiwiZXhwIjoxNTE2NjI0NDgyLCJpZGVudGl0eSI6ImVtYWlsQGVtYWlsLmNvbSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.8rBBF5Fu2YaT-qZ8K3rvDRBThBh9KjnJoIa_BFszsOc",
+    "refresh_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTY2MjQxODIsIm5iZiI6MTUxNjYyNDE4MiwianRpIjoiZGQwYjAxM2QtMThkZC00NWE2LWFhMTAtZTU5NDU1MjFiODk5IiwiZXhwIjoxNTE5MjE2MTgyLCJpZGVudGl0eSI6ImVtYWlsQGVtYWlsLmNvbSIsInR5cGUiOiJyZWZyZXNoIn0.LNzhdPg1IxB3Kbdi6PO20erPj_zdVCAKyay2f6rGFE8"
+}
+```
+
+#### 3. Accessing a protected url
+* Method - GET
+* url - {{url}}/protected
+* Input Json value - 
+    ```
+    Authorization header with access token value.
+    ```
+    
+#### 4. Refreshing an access token
+* Method - POST
+* url - {{url}}/refresh
+* Input Json Value - 
+    ```
+    Authorization header with refresh token value
+    ```
+* Output Json Value - 
+```
+{
+"access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTY2MjQ0NzEsIm5iZiI6MTUxNjYyNDQ3MSwianRpIjoiNjcxN2Q0YzEtNDY0Yy00Yzg0LTkxNTItNTliYzZmMTlmMTQzIiwiZXhwIjoxNTE2NjI0NzcxLCJpZGVudGl0eSI6ImVtYWlsQGVtYWlsLmNvbSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.0LGTU0GWfhuSbUZIidljdu9WYz4urQzCvBhA-9YXQZI"
+}
+```
     
     
     

@@ -1,5 +1,27 @@
 from db import db
 
+import hashlib
+from werkzeug.security import generate_password_hash, check_password_hash
+
+
+class Users(db.Model):
+	__tablename__ = 'users'
+	id = db.Column(db.Integer, primary_key=True)
+	name = db.Column(db.String(30))
+	email = db.Column(db.String(50))
+	password_hash = db.Column(db.String(128))
+	@property
+	def password(self):
+		pass
+
+	@password.setter
+	def password(self, password):
+		self.password_hash = generate_password_hash(password)
+
+	def verify_password(self, password):
+		return check_password_hash(self.password_hash, password)
+
+
 
 class Hubs(db.Model):
 	__tablename__ = 'hubs'
@@ -30,7 +52,7 @@ class Cennets(db.Model):
 	cennet_type = db.Column(db.String(40))
 	discovered = db.Column(db.Boolean)
 	ip_address = db.Column(db.String(25))
-	room_id = db.Column(db.Integer, db.ForeignKey('rooms.id'), nullable=False)
+	room_id = db.Column(db.Integer, db.ForeignKey('rooms.id'))
 	relays = db.relationship('Relays', backref='cennet', cascade='all, delete-orphan', lazy=True)
 	dimmers = db.relationship('Dimmers', backref='cennet', cascade='all, delete-orphan', lazy=True)
 
