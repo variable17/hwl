@@ -3,7 +3,7 @@ ___
 ## 0. Hubs - 
 #### 1. Get all hubs
 * Method - GET
-* url - https://hwl.herokuapp.com/hubs
+* url - {{url}}/hubs
 * Output Json value - 
     ```
     {
@@ -21,7 +21,7 @@ ___
     ```
 #### 2. Get all the rooms of hub_id
 * Method - GET
-* url - https://hwl.herokuapp.com/hubs/<int:id>
+* url - {{url}}/hubs/<int:id>
 * Output Json value - 
     ```
     {
@@ -39,7 +39,7 @@ ___
 
 #### 3. Add a hub
 * Method - POST
-* url - https://hwl.herokuapp.com/hubs
+* url - {{url}}/hubs
 * Input Json value -
     ```
     {
@@ -51,7 +51,7 @@ ___
 
 #### 4. Changing a name of a hub
 * Method - PUT
-* url - https://hwl.herokuapp.com/hubs/<int:id>
+* url - {{url}}/hubs/<int:id>
 * Input Json value - 
     ```
     {
@@ -62,7 +62,7 @@ ___
 
 #### 5. Delete a hub
 * Method - DELETE
-* url - https://hwl.herokuapp.com/hubs
+* url - {{url}}/hubs/<int:id>
 * Output Json value - 
     ```
     msg: Whether operation was successfull or not
@@ -73,7 +73,7 @@ ___
 ## 1. Cennets -
 #### 1. Get all cennets
 * Method - GET
-* url - http://127.0.0.1:5000/cennets
+* url - {{url}}/cennets
 * Output Json value - 
     ```
             {
@@ -93,7 +93,7 @@ ___
 
 #### 2. Get only one cennet by id
 * Method - GET
-* url - http://127.0.0.1:5000/cennets/1
+* url - {{url}}/cennets/<int:id>
 * Output Json value - 
     ```
         {
@@ -135,7 +135,7 @@ ___
    
 #### 3. Add a cennet
 * Method - POST
-* url - http://127.0.0.1:5000/cennets
+* url - {{url}}/cennets
 * Input Json value - 
     ```
    {
@@ -150,7 +150,7 @@ ___
     
 #### 4.  Changing the value of room_id in cennet
 * Method - PUT
-* url - http://127.0.0.1:5000/cennets/1
+* url - {{url}}/cennets/<int:id>
 * Input Json value - 
     ```
     {
@@ -160,7 +160,7 @@ ___
     
 #### 5.  Delete a cennet
 * Method - DELETE
-* url - http://127.0.0.1:5000/cennets/1
+* url - {{url}}/cennets/<int:id>
 * Output Json value - 
     ```
     msg: Whether operation was successfull or not 
@@ -170,7 +170,7 @@ ___
 ## 2. Rooms - 
 #### 1. Get all rooms
 * Method - GET
-* url - http://127.0.0.1:5000/rooms
+* url - {{url}}/rooms
 * Output Json value 
     ```
           {
@@ -185,7 +185,7 @@ ___
     
 #### 2. Get a single room
 * Method - GET
-* url - http://127.0.0.1:5000/rooms/1
+* url - {{url}}/rooms/<int:id>
 * Output Json value - 
     ```
         {
@@ -236,7 +236,7 @@ ___
 
 #### 3. Adding a room
 * Method - POST
-* url - http://127.0.0.1:5000/rooms
+* url - {{url}}/rooms
 * Input Json value - 
     ```
     {
@@ -245,7 +245,7 @@ ___
     ```
 #### 4. Changing the room name
 * Method - PUT
-* url - http://127.0.0.1:5000/rooms/1
+* url - {{url}}/rooms/<int:id>
 * Input Json value - 
     ```
     {
@@ -255,7 +255,7 @@ ___
      
 #### 5. Delete a room
 * Method - DELETE
-* url - http://127.0.0.1:5000/rooms/2
+* url - {{url}}/rooms/<int:id>
 * Output Json value - 
     ```
     msg: operation succeded or not
@@ -265,7 +265,7 @@ ___
 
 #### 1. Get all buttons
 * Method - GET
-* url - http://127.0.0.1:5000/buttons
+* url - {{url}}/buttons
 * Output Json value - 
     ```
         {
@@ -314,7 +314,7 @@ ___
 
 #### 2. Get a single button
 * Method - GET
-* url - http://127.0.0.1:5000/buttons/1
+* url - {{url}}/buttons/<int:id>
 * Output Json value - 
     ```
    {
@@ -331,7 +331,7 @@ ___
 
 #### 3. Add a button
 * Method - POST
-* url - http://127.0.0.1:5000/buttons
+* url - {{url}}/buttons
 * Input Json value - 
     ```
         {
@@ -345,7 +345,7 @@ ___
     
 #### 4. Change the value of a button
 * Method - PUT
-* url - http://127.0.0.1:5000/buttons/1
+* url - {{url}}/buttons/<int:id>
 * Input Json value - 
     ```
     {
@@ -357,7 +357,7 @@ ___
 
 #### 5. Delete a button
 * Method - DELETE
-* url - http://127.0.0.1:5000/buttons/1
+* url - {{url}}/buttons/<int:id>
 * Output Json value - 
     ```
     msg: operation succedded or not
