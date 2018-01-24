@@ -22,11 +22,14 @@ class Button(Resource):
 		power = data.get('power')
 		
 		if button.button_type == 'relay':
-			rd_id = data.get('relay_id')
+			# rd_id = data.get('relay_id')
+			rd_id = button.rd_id
+
 			if power is None or rd_id is None:
 				return make_response(jsonify({'msg': 'Some field missing'}), 401)
 		else:
-			rd_id = data.get('dimmer_id')
+			# rd_id = data.get('dimmer_id')
+			rd_id = button.rd_id
 			intensity = data.get('intensity')
 			if power is None or rd_id is None or intensity is None:
 				return make_response(jsonify({'msg': 'Some field missing'}), 401)

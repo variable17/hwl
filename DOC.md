@@ -346,12 +346,11 @@ ___
 #### 4. Change the value of a button
 * Method - PUT
 * url - {{url}}/buttons/<int:id>
-* Input Json value - 
+* Input Json value (in case of relay intensity value will not be present) - 
     ```
     {
     "power": false,
-    "intensity": 0,
-    "dimmer_id": 2
+    "intensity": 0
     }
     ```
 
