@@ -1,11 +1,10 @@
-import os	
+import os
 from datetime import timedelta
 
 
 from flask import Flask
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
-
 
 
 from resources.cennet import Cennet, CennetList
@@ -32,7 +31,7 @@ app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(minutes=5)
 
 from db import db
 db.init_app(app)
-	
+
 jwt = JWTManager(app)
 
 api = Api(app)
@@ -42,7 +41,6 @@ api.add_resource(Register, '/register')
 api.add_resource(Login, '/login')
 api.add_resource(Refresh, '/refresh')
 api.add_resource(Protected, '/protected')
-
 
 
 # other resources check
@@ -57,4 +55,4 @@ api.add_resource(HubList, '/hubs')
 
 
 if __name__ == '__main__':
-	app.run(debug=True)
+    app.run(debug=True)

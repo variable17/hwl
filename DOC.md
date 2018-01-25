@@ -176,8 +176,8 @@ ___
           {
         "rooms": [
             {
-                "id": 1,
-                "name": "Dinning room"
+                "name": "Dinning room",
+                "hub_id": 1
             }
         ]
     }
