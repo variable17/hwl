@@ -176,8 +176,8 @@ ___
           {
         "rooms": [
             {
-                "name": "Dinning room",
-                "hub_id": 1
+                "id": 1,
+                "name": "Dinning room"
             }
         ]
     }
@@ -240,7 +240,8 @@ ___
 * Input Json value - 
     ```
     {
-    "name": "Dinning room"
+        "name": "Dinning room",
+        "hub_id": 1
     }
     ```
 #### 4. Changing the room name
