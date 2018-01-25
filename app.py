@@ -25,7 +25,7 @@ app.secret_key = 'fgnoignvoghorihgnonvznn874fiv98u'
 app.config['JWT_SECRET_KEY'] = 'kuiciryn9 8fhromf8rh oirzo8gnyhghn8gy'
 # Dynamically defining the expiration time, default time is 15 minute for access-token
 # and 30 day for the refresh token.
-app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(minutes=5)
+app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(minutes=30)
 # app.config['JWT_REFRESH_TOKEN_EXPIRES'] = datetime.timedelta
 
 

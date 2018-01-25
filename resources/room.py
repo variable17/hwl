@@ -1,12 +1,13 @@
 from flask import request, jsonify, make_response
 from flask_restful import Resource
 from models.models import Rooms, Buttons
+from flask_jwt_extended import jwt_required
 
 from db import db
 
 
 class Room(Resource):
-
+    @jwt_required
     def get(self, id):
         buttons = Buttons.query.filter_by(room_id=id).all()
         if len(buttons) > 0:
@@ -16,6 +17,7 @@ class Room(Resource):
             return make_response(jsonify({'room_id': id, 'room_name': button.room.name, 'buttons': btn}), 200)
         return make_response(jsonify({'msg': 'The room is not defined'}), 401)
 
+    @jwt_required
     def put(self, id):
         room = Rooms.query.filter_by(id=id).first()
         if room is None:
@@ -27,6 +29,7 @@ class Room(Resource):
         db.session.commit()
         return make_response(jsonify({'msg': 'Room name has changed'}), 200)
 
+    @jwt_required
     def delete(self, id):
         room = Rooms.query.filter_by(id=id).first()
         if room is None:
@@ -37,9 +40,11 @@ class Room(Resource):
 
 
 class RoomList(Resource):
+    @jwt_required
     def get(self):
         return make_response(jsonify({'rooms': [room.json() for room in Rooms.query.all()]}), 200)
 
+    @jwt_required
     def post(self):
         data = request.get_json()
         name = data.get('name')

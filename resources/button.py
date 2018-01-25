@@ -1,17 +1,20 @@
 from flask import request, jsonify, make_response
 from flask_restful import Resource
 from models.models import *
+from flask_jwt_extended import jwt_required
 
 from db import db
 
 
 class Button(Resource):
+    @jwt_required
     def get(self, id):
         button = Buttons.query.filter_by(id=id).first()
         if button is None:
             return make_response(jsonify({'msg': 'No button by this id'}), 404)
         return make_response(jsonify(button.json()), 200)
 
+    @jwt_required
     def put(self, id):
         button = Buttons.query.filter_by(id=id).first()
         if button is None:
@@ -53,6 +56,7 @@ class Button(Resource):
             db.session.commit()
             return make_response(jsonify({'msg': 'Value changed'}), 200)
 
+    @jwt_required
     def delete(self, id):
         button = Buttons.query.filter_by(id=id).first()
         if button is None:
@@ -63,9 +67,11 @@ class Button(Resource):
 
 
 class ButtonList(Resource):
+    @jwt_required
     def get(self):
         return make_response(jsonify({'buttons': [button.json() for button in Buttons.query.all()]}), 200)
 
+    @jwt_required
     def post(self):
         data = request.get_json()
         name = data.get('name')

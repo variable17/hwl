@@ -1,11 +1,13 @@
 from flask import request, jsonify, make_response
 from flask_restful import Resource
 from models.models import Rooms, Hubs
+from flask_jwt_extended import jwt_required
 
 from db import db
 
 
 class Hub(Resource):
+    @jwt_required
     def get(self, id):
         rooms = Rooms.query.filter_by(hub_id=id).all()
         if len(rooms) > 0:
@@ -15,6 +17,7 @@ class Hub(Resource):
             return make_response(jsonify({'hub_id': id, 'hub_name': room.hub.name, 'rooms': rms}), 200)
         return make_response(jsonify({'msg': 'The hubs is not defined'}), 401)
 
+    @jwt_required
     def put(self, id):
         hub = Hubs.query.filter_by(id=id).first()
         if hub is None:
@@ -26,6 +29,7 @@ class Hub(Resource):
         db.session.commit()
         return make_response(jsonify({'msg': 'Hub name changed'}))
 
+    @jwt_required
     def delete(self, id):
         hub = Hubs.query.filter_by(id=id).first()
         if hub is None:
@@ -36,9 +40,11 @@ class Hub(Resource):
 
 
 class HubList(Resource):
+    @jwt_required
     def get(self):
         return make_response(jsonify({'hubs': [hub.json() for hub in Hubs.query.all()]}), 200)
 
+    @jwt_required
     def post(self):
         data = request.get_json()
         name = data.get('name')

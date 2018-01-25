@@ -1,11 +1,13 @@
 from flask import request, jsonify, make_response
 from flask_restful import Resource
 from models.models import Rooms, Buttons, Cennets, Relays, Dimmers
+from flask_jwt_extended import jwt_required
 
 from db import db
 
 
 class Cennet(Resource):
+    @jwt_required
     def get(self, id):
         cennet = Cennets.query.filter_by(id=id).first()
         if cennet is None:
@@ -13,6 +15,7 @@ class Cennet(Resource):
         return make_response(jsonify({'id': cennet.id, 'udid': cennet.udid, 'ip_address': cennet.ip_address if cennet.ip_address else 'not_set', 'name': cennet.name, 'cennet_type': cennet.cennet_type, 'discovered': cennet.discovered, 'room_id': cennet.room_id,
                                       'relays': [relay.json() for relay in Relays.query.filter_by(cennet_id=cennet.id).all()], 'dimmers': [dimmer.json() for dimmer in Dimmers.query.filter_by(cennet_id=cennet.id).all()]}), 200)
 
+    @jwt_required
     def put(self, id):
         cennet = Cennets.query.filter_by(id=id).first()
         if cennet:
@@ -25,6 +28,7 @@ class Cennet(Resource):
         else:
             return make_response(jsonify({'msg': 'No cennet at this id'}), 404)
 
+    @jwt_required
     def delete(self, id):
         cennet = Cennets.query.filter_by(id=id).first()
         if cennet is None:
@@ -35,9 +39,11 @@ class Cennet(Resource):
 
 
 class CennetList(Resource):
+    @jwt_required
     def get(self):
         return make_response(jsonify({'cennets': [cennet.json() for cennet in Cennets.query.all()]}), 200)
 
+    @jwt_required
     def post(self):
         data = request.get_json()
         udid = data.get('udid')
